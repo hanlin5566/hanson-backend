@@ -5,7 +5,6 @@ import com.hanson.base.enums.DataStatus;
 import com.hanson.base.exception.ControllerException;
 import com.hanson.base.exception.ServiceException;
 import com.hanson.base.response.ResponseCode;
-import com.hanson.base.util.BeanUtils;
 import com.hanson.manager.dao.gen.entity.SystemUser;
 import com.hanson.manager.dao.gen.entity.SystemUserExample;
 import com.hanson.manager.dao.gen.mapper.SystemUserMapper;
@@ -21,11 +20,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Create by hanlin on 2018年5月24日
@@ -131,9 +127,11 @@ public class AuthServiceImpl implements AuthService {
 			String nikeName = userInfo.getString("nikeName");
 			JSONObject ret = new JSONObject();
 			ret.put("name",nikeName);
+			ret.put("userId",userId);
 			ret.put("introduction","I am "+nikeName);
 			ret.put("avatar","https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
 			List<String> roleList = new ArrayList<String>();
+			//FIXME:添加角色信息
 			roleList.add("admin");
 			ret.put("roles",roleList);
 //			ret.put("menus",userService.getUserMenus(user.getUserId()));

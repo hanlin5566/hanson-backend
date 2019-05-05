@@ -1,17 +1,16 @@
 package com.hanson.manager.service.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.hanson.base.enums.DataStatus;
 import com.hanson.base.mybatis.pagination.entity.PageInfo;
+import com.hanson.base.util.BeanUtils;
 import com.hanson.manager.dao.gen.entity.SYFCCommunity;
 import com.hanson.manager.dao.gen.entity.SYFCCommunityExample;
 import com.hanson.manager.dao.gen.mapper.SYFCCommunityMapper;
 import com.hanson.manager.service.SYFCCommunityService;
-import com.hanson.base.util.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Create by hanlin on 2019年1月30日
@@ -23,6 +22,7 @@ public class SYFCCommunityServiceImpl implements SYFCCommunityService{
 	
 	@Override
 	public Integer insert(SYFCCommunity sYFCCommunity) {
+		sYFCCommunity.setDataStatus(DataStatus.NORMAL);
 		return mapper.insertSelective(sYFCCommunity);
 	}
 	@Override
